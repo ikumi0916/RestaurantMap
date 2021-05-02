@@ -36,3 +36,14 @@ class Comment(models.Model):
         return self.text[:10]
 
 
+
+class Store(models.Model):
+
+    name = models.CharField('店名', max_length=30, default='')
+    describe = models.TextField('説明')
+    created_at = models.DateTimeField('作成日', default=timezone.now)
+
+    def __str__(self):
+        return self.name[:10]
+
+

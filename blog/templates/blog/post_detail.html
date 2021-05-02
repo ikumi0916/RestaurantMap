@@ -11,7 +11,7 @@
 
 {% for comment in post.comment_set.all %}
   <p>
-    {{ comment.name }}<br>
+    >{{ comment.name }}<br>
     {{ comment.text | linebreaksbr }}
   </p>
 {% endfor %}
