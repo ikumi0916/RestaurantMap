@@ -39,7 +39,7 @@ class Comment(models.Model):
 
 class Store(models.Model):
 
-    name = models.CharField('店名', max_length=30, default='')
+    name = models.CharField('店名', max_length=30, default='名無し')
     describe = models.TextField('説明')
     created_at = models.DateTimeField('作成日', default=timezone.now)
 
