@@ -133,35 +133,36 @@
 {% endblock %}
 
 {% block content %}
-{% for store in store_list %}
   <!-- Storeの件数分ループ -->
-  <div class="card mb-3">
-    <!-- 店名 -->
-    <h2 class="card-header bg-dark text-white mb-12">{{ store.name }}</h2>
-    <!-- 全体の大きさ指定 -->
-    <div class="card-body mb-12">
-      <!-- 列表示 -->
-      <div class="row">
-        <!-- 店舗情報 -->
-        <div class="col-md-6">
-          <p>住所：{{ store.address }}</p>
-          <p>営業時間：{{ store.open_time }}</p>
-          <p>TEL：{{ store.tel }}</p>
-          <p>URL：<a href="https://www.hotpepper.jp/str{{ store.hotPepper_id }}" target="_blank">https://www.hotpepper.jp/str{{ store.hotPepper_id }}</a></p>
-        </div>
-        <!-- Map ※複数件表示するためにIDも動的に設定 -->
-        <div class="col-md-6" id="map_{{ store.hotPepper_id }}">
-          <!-- 下記の範囲をクリックすることでAPIをたたき、Mapを描画する -->
-          <div class="d-flex align-items-center bg-light h-100 text-center" onclick="renderMap('{{ store.latitude }}', '{{ store.longitude }}', '{{ store.name }}', this.parentElement.getAttribute('Id'))">
-            <!-- 階層分けて表示しないと、レイアウトが崩れるので注意 -->
-            <div class="container-fluid">クリックで地図を表示</div>
+  {% for store in store_list %}
+    <!-- 1店舗あたりの表示領域 -->
+    <div class="card mb-3">
+      <!-- 店名 -->
+      <h2 class="card-header bg-dark text-white mb-12">{{ store.name }}</h2>
+      <!-- 全体の大きさ指定 -->
+      <div class="card-body mb-12">
+        <!-- 列表示 -->
+        <div class="row">
+          <!-- 店舗情報 -->
+          <div class="col-md-6">
+            <p>住所：{{ store.address }}</p>
+            <p>営業時間：{{ store.open_time }}</p>
+            <p>TEL：{{ store.tel }}</p>
+            <p>URL：<a href="https://www.hotpepper.jp/str{{ store.hotPepper_id }}" target="_blank">https://www.hotpepper.jp/str{{ store.hotPepper_id }}</a></p>
+          </div>
+          <!-- Map ※複数件表示するためにIDも動的に設定 -->
+          <div class="col-md-6" id="map_{{ store.hotPepper_id }}">
+            <!-- 下記の範囲をクリックすることでAPIをたたき、Mapを描画する -->
+            <div class="d-flex align-items-center bg-light h-100 text-center" onclick="renderMap('{{ store.latitude }}', '{{ store.longitude }}', '{{ store.name }}', this.parentElement.getAttribute('Id'))">
+              <!-- 階層分けて表示しないと、レイアウトが崩れるので注意 -->
+              <div class="container-fluid">クリックで地図を表示</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-{% endfor %}
-
-{% include 'RestaurantMap/page.html' %}
+  {% endfor %}
+  <!-- ページング -->
+  {% include 'RestaurantMap/page.html' %}
 
 {% endblock %}
