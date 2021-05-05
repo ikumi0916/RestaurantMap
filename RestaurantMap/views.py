@@ -17,6 +17,11 @@ class StoreView(generic.ListView):
         ctx = super().get_context_data()
 
         # APIキーを取得する
-        ctx['api_key'] = settings.GOOGLEMAP_API_KEY
-
+        ctx["api_key"] = settings.GOOGLEMAP_API_KEY
+        # 地図Mapの作成
+        tmp_Map = {}
+        for con in ctx["object_list"]:
+            tmp_Map[con.hotPepper_id] = "</br>" + con.latitude + "/" +  con.longitude
+        
+        ctx["map_view"] = tmp_Map
         return ctx
